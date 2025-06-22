@@ -1,0 +1,115 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "kabupaten": "Kabupaten Sumba Timur" },
+      "geometry": { "type": "Point", "coordinates": [120.383, -9.833] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "kabupaten": "Kabupaten Timor Tengah Selatan" },
+      "geometry": { "type": "Point", "coordinates": [124.467, -9.833] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "kabupaten": "Kabupaten Manggarai" },
+      "geometry": { "type": "Point", "coordinates": [120.417, -8.583] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "kabupaten": "Kabupaten Kupang" },
+      "geometry": { "type": "Point", "coordinates": [123.583, -10.167] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "kabupaten": "Kabupaten Belu" },
+      "geometry": { "type": "Point", "coordinates": [124.917, -9.083] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "kabupaten": "Kabupaten Alor" },
+      "geometry": { "type": "Point", "coordinates": [124.417, -8.333] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "kabupaten": "Kabupaten Flores Timur" },
+      "geometry": { "type": "Point", "coordinates": [122.917, -8.583] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "kabupaten": "Kabupaten Sikka" },
+      "geometry": { "type": "Point", "coordinates": [122.167, -8.667] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "kabupaten": "Kabupaten Ende" },
+      "geometry": { "type": "Point", "coordinates": [121.667, -8.833] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "kabupaten": "Kabupaten Ngada" },
+      "geometry": { "type": "Point", "coordinates": [121.083, -8.667] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "kabupaten": "Kabupaten Manggarai Barat" },
+      "geometry": { "type": "Point", "coordinates": [119.917, -8.667] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "kabupaten": "Kabupaten Sumba Barat" },
+      "geometry": { "type": "Point", "coordinates": [119.417, -9.583] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "kabupaten": "Kabupaten Lembata" },
+      "geometry": { "type": "Point", "coordinates": [123.417, -8.417] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "kabupaten": "Kabupaten Rote Ndao" },
+      "geometry": { "type": "Point", "coordinates": [123.417, -10.833] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "kabupaten": "Kabupaten Timor Tengah Utara" },
+      "geometry": { "type": "Point", "coordinates": [124.167, -9.417] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "kabupaten": "Kabupaten Sumba Tengah" },
+      "geometry": { "type": "Point", "coordinates": [119.917, -9.417] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "kabupaten": "Kabupaten Sumba Barat Daya" },
+      "geometry": { "type": "Point", "coordinates": [119.167, -9.667] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "kabupaten": "Kabupaten Nagekeo" },
+      "geometry": { "type": "Point", "coordinates": [121.417, -8.833] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "kabupaten": "Kabupaten Manggarai Timur" },
+      "geometry": { "type": "Point", "coordinates": [120.917, -8.583] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "kabupaten": "Kabupaten Sabu Raijua" },
+      "geometry": { "type": "Point", "coordinates": [121.917, -10.583] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "kabupaten": "Kabupaten Malaka" },
+      "geometry": { "type": "Point", "coordinates": [124.917, -9.583] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "kabupaten": "Kota Kupang" },
+      "geometry": { "type": "Point", "coordinates": [123.583, -10.167] }
+    }
+  ]
+} 
