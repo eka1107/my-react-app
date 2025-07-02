@@ -45,3 +45,128 @@
   margin: 8px 12px;
   font-family: 'Inter', system-ui, sans-serif;
 }
+
+.modern-popup .leaflet-popup-content-wrapper {
+  background: transparent !important;
+  border-radius: 12px !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+.modern-popup .leaflet-popup-content {
+  margin: 0 !important;
+  line-height: 1.4 !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+.modern-popup .leaflet-popup-tip-container {
+    margin-top: -1px; /* Fix small gap between popup and tip */
+}
+
+.modern-popup .leaflet-popup-tip {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.popup-container {
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  min-width: 210px;
+}
+
+.popup-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--category-color);
+}
+
+.popup-header {
+    padding: 8px 12px 4px;
+}
+
+.popup-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: 16px;
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--category-color);
+  color: white;
+}
+
+.popup-badge svg {
+  width: 13px !important;
+  height: 13px !important;
+}
+
+.popup-content-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 4px 12px 10px;
+}
+
+.popup-info {
+    flex: 1;
+}
+
+.popup-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.popup-subtitle {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 0;
+  font-weight: 500;
+}
+
+.popup-stats {
+    text-align: right;
+}
+
+.popup-percentage {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1;
+  background: linear-gradient(45deg, var(--category-color), var(--category-color-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.popup-label {
+  font-size: 9px;
+  color: #6b7280;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* Dark Mode Styles */
+.dark .modern-popup .leaflet-popup-tip {
+  background: rgba(31, 41, 55, 0.9) !important;
+}
+.dark .popup-container {
+  background: rgba(31, 41, 55, 0.85) !important;
+  backdrop-filter: blur(10px) !important;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.dark .popup-title { color: #f9fafb; }
+.dark .popup-subtitle { color: #d1d5db; }
+.dark .popup-percentage { /* Gradient handles color */ }
+.dark .popup-label { color: #9ca3af; }

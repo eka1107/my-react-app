@@ -1,6 +1,12 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { TrendingUp, MapPin, Users, AlertTriangle } from 'lucide-react';
+import { 
+  TrendingUp, 
+  MapPin, 
+  Users, 
+  AlertTriangle,
+  Layers // Icon for GEE/Satellite
+} from 'lucide-react';
 
 const Home = () => {
   const stats = [
@@ -38,32 +44,49 @@ const Home = () => {
     }
   ];
 
-  const features = [
+  // Updated dataSources with image URLs for BPS and Kemenkes
+  const dataSources = [
     {
-      title: 'Web Story Interaktif',
-      description: 'Jelajahi cerita stunting di NTT melalui narasi visual yang menarik',
-      icon: '📖',
-      link: '/story'
+      name: 'Badan Pusat Statistik',
+      logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/28/Lambang_Badan_Pusat_Statistik_%28BPS%29_Indonesia.svg',
     },
     {
-      title: 'Dashboard Visualisasi',
-      description: 'Analisis data stunting dengan grafik dan chart yang informatif',
-      icon: '📊',
-      link: '/dashboard'
+      name: 'Kementerian Kesehatan',
+      logoUrl: 'https://kemkes.go.id/app_asset/image_content/167420049363ca45ad438f30.09191866.png',
     },
     {
-      title: 'Peta Tematik Dinamis',
-      description: 'Lihat distribusi stunting di seluruh kabupaten NTT',
-      icon: '🗺️',
-      link: '/map'
+      name: 'Citra Satelit',
+      logoUrl: 'https://earthengine.google.com/static/images/earth-engine-logo.png', // No logo URL, will use fallback icon
+      icon: Layers,
+      iconColor: 'text-orange-600',
+      bgColor: 'bg-orange-50',
     }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
+      <section className="relative overflow-hidden bg-white">
+        <div className="absolute inset-0">
+          <div 
+            className="absolute inset-0 opacity-20"
+            style={{
+              backgroundImage: `url('src/assets/Asset 4.svg')`,
+              backgroundSize: 'auto 200px',
+              backgroundRepeat: 'repeat',
+              backgroundPosition: 'center top',
+              filter: 'grayscale(100%) brightness(4) contrast(0.8)'
+            }}
+          ></div>
+          <div 
+            className="absolute inset-0"
+            style={{
+              background: 'linear-gradient(to bottom, transparent 40%, white 100%)'
+            }}
+          ></div>
+        </div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -71,16 +94,16 @@ const Home = () => {
             className="text-center"
           >
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-red-600 via-red-600 to-orange-500 bg-clip-text text-transparent">
                 Stunting di Nusa Tenggara Timur
               </span>
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
               Platform visualisasi data stunting yang komprehensif untuk memahami dan mengatasi 
-              masalah gizi kronis di Provinsi Nusa Tenggara Timur
+              masalah gizi kronis di Provinsi Nusa Tenggara Timur.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/story" className="btn-primary text-lg px-8 py-3">
+              <Link to="/story" className="bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-200 text-lg shadow-sm hover:shadow-md">
                 Mulai Jelajahi
               </Link>
               <Link to="/dashboard" className="btn-secondary text-lg px-8 py-3">
@@ -91,11 +114,11 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Stats Section - Pulled up with negative margin */}
+      <section className="relative pb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
@@ -103,7 +126,7 @@ const Home = () => {
             {stats.map((stat, index) => {
               const Icon = stat.icon;
               return (
-                <div key={index} className="card hover:shadow-md transition-shadow duration-300">
+                <div key={index} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-4 border border-gray-100">
                   <div className="flex items-center space-x-4">
                     <div className={`p-3 rounded-lg ${stat.bgColor}`}>
                       <Icon className={`w-6 h-6 ${stat.color}`} />
@@ -111,7 +134,7 @@ const Home = () => {
                     <div>
                       <div className={`text-2xl font-bold ${stat.color}`}>{stat.value}</div>
                       <div className="text-sm font-medium text-gray-900">{stat.label}</div>
-                      <div className="text-xs text-gray-500">{stat.description}</div>
+                      <p className="text-xs text-gray-500">{stat.description}</p>
                     </div>
                   </div>
                 </div>
@@ -120,86 +143,56 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
-
-      {/* Features Section */}
+      
+      {/* Features & Data Source Section */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-center mb-12"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center"
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Fitur Utama Platform
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Jelajahi berbagai cara untuk memahami data stunting di NTT
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
-                className="card hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-              >
-                <div className="text-4xl mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  {feature.description}
-                </p>
-                <Link to={feature.link} className="text-primary-600 hover:text-primary-700 font-medium">
-                  Jelajahi →
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-          >
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Tentang Stunting di NTT
+            {/* Left side: Concise Feature Description */}
+            <div className="text-center lg:text-left">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Platform Terpadu Stunting NTT
               </h2>
-              <p className="text-lg text-gray-600 mb-6">
-                Stunting adalah masalah gizi kronis yang ditandai dengan tinggi badan anak di bawah standar 
-                usianya. Di Nusa Tenggara Timur, prevalensi stunting masih tergolong tinggi dan memerlukan 
-                perhatian serius dari berbagai pihak.
-              </p>
               <p className="text-lg text-gray-600 mb-8">
-                Platform ini menyajikan data dan visualisasi yang komprehensif untuk membantu pemahaman 
-                mendalam tentang kondisi stunting di setiap kabupaten di NTT.
+                Jelajahi data stunting NTT melalui tiga fitur utama: <strong>Web Story</strong> interaktif, <strong>Dashboard</strong> analitik, dan visualisasi data presisi tinggi level kecamatan (2023) menggunakan metode <strong>SAE</strong> <i>(Small Area Estimation)</i>.
               </p>
-              <Link to="/story" className="btn-primary">
-                Pelajari Lebih Lanjut
+              <Link to="/dashboard" className="bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 text-base shadow-sm hover:shadow-md">
+                Buka Dashboard
               </Link>
             </div>
-            <div className="relative">
-              <div className="bg-gradient-to-br from-primary-100 to-secondary-100 rounded-2xl p-8">
-                <div className="text-center">
-                  <div className="text-6xl mb-4">🏥</div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    Data Terpercaya
-                  </h3>
-                  <p className="text-gray-600">
-                    Sumber data dari BPS, Kemenkes, dan instansi terkait
-                  </p>
-                </div>
+            
+            {/* Right side: Data Source Logos */}
+            <div className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
+              <h3 className="text-xl font-bold text-gray-800 mb-8 text-center">
+                Didukung oleh Sumber Data Terpercaya
+              </h3>
+              <div className="flex flex-col sm:flex-row justify-around items-start text-center gap-8 sm:gap-6">
+                {dataSources.map((source) => {
+                  const Icon = source.icon;
+                  return (
+                    <div key={source.name} className="flex flex-col items-center w-full sm:w-1/3">
+                      <div className="w-20 h-16 mb-3 flex items-center justify-center">
+                        {source.logoUrl ? (
+                          <img 
+                            src={source.logoUrl} 
+                            alt={`${source.name} logo`} 
+                            className="max-h-full max-w-full object-contain transition-transform hover:scale-110 duration-300"
+                          />
+                        ) : (
+                          <div className={`flex-shrink-0 w-16 h-16 ${source.bgColor} ${source.iconColor} rounded-full flex items-center justify-center transition-transform hover:scale-110 duration-300`}>
+                            <Icon className="w-8 h-8" />
+                          </div>
+                        )}
+                      </div>
+                      <p className="font-semibold text-gray-700 text-sm leading-tight">{source.name}</p>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </motion.div>
@@ -209,4 +202,4 @@ const Home = () => {
   );
 };
 
-export default Home; 
+export default Home;
