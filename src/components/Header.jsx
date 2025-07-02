@@ -1,27 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-// MODIFIKASI: Mengganti Info dengan BookOpen dan menghapus Map jika tidak dipakai
 import { BarChart3, Home, BookOpen } from 'lucide-react'; 
 import { X, Menu } from 'lucide-react';
 
 const Header = () => {
-  // Menggunakan useLocation dari react-router-dom untuk mendapatkan pathname saat ini
   const location = useLocation();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isHidden, setIsHidden] = useState(false); // State untuk menyembunyikan header
 
   const navItems = [
     { path: '/', label: 'Beranda', icon: Home },
-    // MODIFIKASI: Menggunakan ikon BookOpen yang baru
     { path: '/story', label: 'Web Story', icon: BookOpen }, 
     { path: '/dashboard', label: 'Dashboard', icon: BarChart3 },
-    // { path: '/map', label: 'Peta Tematik', icon: Map },
   ];
 
-  // State untuk mobile menu
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  // Listen untuk message dari Dashboard component
+  useEffect(() => {
+    const handleMessage = (event) => {
+      if (event.data.type === 'TOGGLE_HEADER') {
+        setIsHidden(event.data.hide);
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, []);
+
+  // Jika header disembunyikan, return null
+  if (isHidden) {
+    return null;
+  }
 
   return (
     <header 
-      // MODIFIKASI: Menghapus bg-white/80 dan backdrop-blur-sm, diganti dengan bg-white
       className="bg-white shadow-sm border-b border-gray-200 sticky top-0"
       style={{ zIndex: 55 }}
     >
@@ -30,7 +41,6 @@ const Header = () => {
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <Link to="/" className="flex items-center space-x-3">
-                {/* Logo Resmi Provinsi NTT */}
                 <div className="w-12 h-12 flex items-center justify-center">
                   <img 
                     src="src/logo-ntt.png"
@@ -108,7 +118,6 @@ const Header = () => {
                       ? 'text-red-700 bg-red-100'
                       : 'text-gray-700 hover:text-red-700 hover:bg-red-100'
                   }`}
-                  // Menutup menu mobile setelah klik
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <Icon size={20} />
